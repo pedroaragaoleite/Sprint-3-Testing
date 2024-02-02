@@ -300,9 +300,40 @@ describe('Function "moviesAverageByCategory"', () => {
   it('should return aa number', () => {
     expect(typeof moviesAverageByCategory(movies, 'Crime')).toBe('number');
   });
+
   it('should be different from NaN', () => {
     expect(moviesAverageByCategory(movies, 'Crime')).not.toBeNaN();
-  })
+  });
+
+  it('Should return the average score of movies by genre, with 2 decimals', () => {
+    expect(moviesAverageByCategory([
+      {
+        title: 'Pulp Fiction',
+        year: 1994,
+        director: 'Quentin Tarantino',
+        duration: '2h 34min',
+        genre: ['Crime', 'Drama'],
+        score: 8.9
+      },
+      {
+        title: '12 Angry Men',
+        year: 1957,
+        director: 'Sidney Lumet',
+        duration: '1h 36min',
+        genre: ['Crime', 'Drama'],
+        score: 8.9
+      },
+      {
+        title: 'Goodfellas',
+        year: 1990,
+        director: 'Martin Scorsese',
+        duration: '2h 26min',
+        genre: ['Crime', 'Drama'],
+        score: 8.7
+      }
+    ], 'Crime')).toBe(8.83);
+  });
+
 });
 
 // Exercise 7
