@@ -41,13 +41,32 @@ function moviesAverageByCategory(array) {
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(array) {
+  const moviesDuration = array.map(movie => {
+    let durationMovie = movie.duration.split(" ").map(word => word.replace(/[hmin]/g, '')).map(word => parseInt(word));
+    if (durationMovie.length === 1) {
+      durationMovie = durationMovie[0] * 60;
+    } else {
+      durationMovie = durationMovie[0] * 60 + durationMovie[1];
+    }
 
+    return { ...movie, duration: durationMovie };
+  })
+  // console.log(moviesDuration);
+  return moviesDuration;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
+function bestFilmOfYear(array, year) {
+  const sortedFilmsYear = array.map(movie => ({ ...movie }))
+    .filter(movie => movie.year === year)
+    .sort((a, b) => b.score - a.score);
 
+  const filmOfTheYear = [sortedFilmsYear.length > 0 ? sortedFilmsYear[0] : null];
+
+  console.log(filmOfTheYear);
+
+  return filmOfTheYear;
 }
 
 
